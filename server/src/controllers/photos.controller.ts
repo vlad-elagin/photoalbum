@@ -16,9 +16,10 @@ export class PhotosController {
 
   @Get("")
   private getAll(req: Request, res: Response) {
+    Logger.Info("kaef", true);
     Logger.Info(req.params, true);
     return res.status(OK).json({
-      message: "get_all_called",
+      message: "get_all_called!",
     });
   }
 
