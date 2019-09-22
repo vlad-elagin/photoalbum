@@ -12,5 +12,4 @@ COPY . .
 
 # # Make port accessible from outside of container
 EXPOSE 3000
-RUN ls /usr/src/photoalbum/node_modules/.bin
-CMD [ "yarn", "run" "start" ]
+CMD [ "yarn", "run", "start" ]
