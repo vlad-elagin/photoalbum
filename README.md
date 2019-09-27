@@ -1,24 +1,13 @@
 # Photoalbum challenge app
 
-## work with docker
-
-### Rebuild container
+# Deploy container to heroku
 
 ```bash
-docker-compose build
+yarn container:deploy
 ```
 
-If you've changed docker-compose - restart docker daemon first.
-
-### Run container in dev mode locally
+# Start dev mode
 
 ```bash
-docker-compose up
-```
-
-### Deploy container to heroku
-
-```bash
-heroku container:push web -a photoalbum-staging
-heroku container:release web -a photoalbum-staging
+yarn start:dev
 ```

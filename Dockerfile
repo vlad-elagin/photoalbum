@@ -11,5 +11,5 @@ RUN yarn
 COPY . .
 
 # # Make port accessible from outside of container
-EXPOSE 3000
-CMD [ "yarn", "run", "start" ]
+EXPOSE 3001
+CMD [ "yarn", "run", "start:dev" ]

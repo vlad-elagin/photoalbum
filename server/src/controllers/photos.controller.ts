@@ -3,6 +3,8 @@ import { Controller, Get } from "@overnightjs/core";
 import { Request, Response } from "express";
 import { Logger } from "@overnightjs/logger";
 
+const { NODE_ENV } = process.env;
+
 @Controller("api/photos")
 export class PhotosController {
   // @Get(":id")
@@ -19,6 +21,7 @@ export class PhotosController {
     Logger.Info(req.params, true);
     return res.status(OK).json({
       message: "get_all_called!",
+      env: NODE_ENV,
     });
   }
 
