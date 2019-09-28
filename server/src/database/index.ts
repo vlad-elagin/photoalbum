@@ -6,11 +6,8 @@ const models = [User];
 
 const { DB_NAME, DB_HOST, DB_USER, DB_PASS } = process.env;
 
-const sequelize: Sequelize = new Sequelize({
-  database: DB_NAME,
+const sequelize: Sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASS, {
   host: DB_HOST,
-  username: DB_USER,
-  password: DB_PASS,
   dialect: "mysql",
   logging: false,
 });

@@ -4,35 +4,27 @@ import { Logger } from "@overnightjs/logger";
 import { GraphQLSchema } from "graphql";
 import { buildSchema } from "type-graphql";
 import { ApolloServer } from "apollo-server-express";
-import { ApolloEngine } from "apollo-engine";
 
 import resolvers from "@schema/resolvers";
 
-const { APOLLO_ENGINE_PATH, APOLLO_ENGINE_API_KEY } = process.env;
+const { APOLLO_ENGINE_PATH } = process.env;
 
 export default class PhotoalbumServer extends Server {
   private apolloServer: ApolloServer;
-  private apolloEngine: ApolloEngine;
 
   constructor() {
     super(process.env.NODE_ENV === "development"); // setting showLogs to true
   }
 
-  public async start(port: number): Promise<void> {
+  public async start(port: number = 3000): Promise<void> {
     this.initExpressApp();
 
     const schema: GraphQLSchema = await this.getGraphQLSchema();
     this.initApolloServer(schema);
-    this.initApolloEngine();
 
-    this.apolloEngine.listen(
-      {
-        port,
-        expressApp: this.app,
-        graphqlPaths: [APOLLO_ENGINE_PATH],
-      },
-      () => Logger.Imp("Server listening on port: " + port)
-    );
+    this.app.listen(port, () => {
+      Logger.Imp("Server listening on port: " + port);
+    });
   }
 
   private getGraphQLSchema(): Promise<GraphQLSchema> {
@@ -52,11 +44,5 @@ export default class PhotoalbumServer extends Server {
   private initExpressApp(): void {
     this.app.use(bodyParser.json());
     this.app.use(bodyParser.urlencoded({ extended: true }));
-  }
-
-  private initApolloEngine(): void {
-    this.apolloEngine = new ApolloEngine({
-      apiKey: APOLLO_ENGINE_API_KEY,
-    });
   }
 }
