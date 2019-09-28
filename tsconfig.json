@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
+    "strictPropertyInitialization": false,
+    "esModuleInterop": true,
     "emitDecoratorMetadata": true,
-    "declaration": true,
     "experimentalDecorators": true,
     "importHelpers": true,
     "module": "commonjs",
@@ -10,6 +11,15 @@
     "removeComments": true,
     "strict": true,
     "types": ["node"],
-    "target": "es5"
+    "target": "es5",
+    "lib": ["es2016", "esnext.asynciterable"],
+    "sourceMap": true,
+    "baseUrl": "./",
+    "paths": {
+      "@server/*": ["server/src/*"],
+      "@models/*": ["server/src/models/*"],
+      "@schema/*": ["server/src/schema/*"],
+      "@services/*": ["server/src/services/*"]
+    }
   }
 }

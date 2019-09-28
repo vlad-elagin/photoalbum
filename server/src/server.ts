@@ -1,29 +1,62 @@
 import * as bodyParser from "body-parser";
 import { Server } from "@overnightjs/core";
 import { Logger } from "@overnightjs/logger";
-import { PhotosController } from "./controllers/photos.controller";
+import { GraphQLSchema } from "graphql";
+import { buildSchema } from "type-graphql";
+import { ApolloServer } from "apollo-server-express";
+import { ApolloEngine } from "apollo-engine";
 
-export class PhotoalbumServer extends Server {
+import resolvers from "@schema/resolvers";
+
+const { APOLLO_ENGINE_PATH, APOLLO_ENGINE_API_KEY } = process.env;
+
+export default class PhotoalbumServer extends Server {
+  private apolloServer: ApolloServer;
+  private apolloEngine: ApolloEngine;
+
   constructor() {
     super(process.env.NODE_ENV === "development"); // setting showLogs to true
-    this.app.use(bodyParser.json());
-    this.app.use(bodyParser.urlencoded({ extended: true }));
-    this.setupControllers();
   }
 
-  public start(port: number): void {
-    this.app.listen(port, () => {
-      Logger.Imp("Server listening on port: " + port);
+  public async start(port: number): Promise<void> {
+    this.initExpressApp();
+
+    const schema: GraphQLSchema = await this.getGraphQLSchema();
+    this.initApolloServer(schema);
+    this.initApolloEngine();
+
+    this.apolloEngine.listen(
+      {
+        port,
+        expressApp: this.app,
+        graphqlPaths: [APOLLO_ENGINE_PATH],
+      },
+      () => Logger.Imp("Server listening on port: " + port)
+    );
+  }
+
+  private getGraphQLSchema(): Promise<GraphQLSchema> {
+    return buildSchema({ resolvers });
+  }
+
+  private initApolloServer(schema: GraphQLSchema): void {
+    this.apolloServer = new ApolloServer({
+      schema,
+    });
+    this.apolloServer.applyMiddleware({
+      app: this.app,
+      path: APOLLO_ENGINE_PATH,
     });
   }
 
-  private setupControllers(): void {
-    const photosController = new PhotosController();
-    // const dbConnObj = new SomeDbConnClass("credentials");
-    // signupController.setDbConn(dbConnObj);
-    // userController.setDbConn(dbConnObj);
-    // super.addControllers() must be called, and can be passed a single controller or an array of
-    // controllers. Optional router object can also be passed as second argument.
-    super.addControllers([photosController] /*, optional router here*/);
+  private initExpressApp(): void {
+    this.app.use(bodyParser.json());
+    this.app.use(bodyParser.urlencoded({ extended: true }));
+  }
+
+  private initApolloEngine(): void {
+    this.apolloEngine = new ApolloEngine({
+      apiKey: APOLLO_ENGINE_API_KEY,
+    });
   }
 }

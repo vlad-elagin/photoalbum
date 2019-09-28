@@ -1,4 +1,6 @@
 node_modules
-yarn-error
+yarn-error.log
 .DS_Store
 .env
+build
+server/build
