@@ -5,11 +5,9 @@ import UserService from "@services/user";
 
 @Resolver(User)
 class UserResolver {
-  constructor(private userService: UserService) {}
-
   @Query(returns => User)
   public me(@Arg("id") id: string) {
-    return this.userService.getUser(id);
+    return UserService.getUser(id);
   }
 }
 

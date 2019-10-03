@@ -10,7 +10,6 @@ declare global {
       DB_HOST: string;
 
       APOLLO_ENGINE_PATH: string;
-      APOLLO_ENGINE_API_KEY: string;
     }
   }
 }

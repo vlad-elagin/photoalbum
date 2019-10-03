@@ -1,8 +1,9 @@
 import { Sequelize } from "sequelize-typescript";
 
 import User from "@models/user";
+import Post from "@models/post";
 
-const models = [User];
+const models = [User, Post];
 
 const { DB_NAME, DB_HOST, DB_USER, DB_PASS } = process.env;
 

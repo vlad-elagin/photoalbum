@@ -6,19 +6,17 @@ import {
   CreatedAt,
 } from "sequelize-typescript";
 
-export interface IUser {
+export interface IPost {
   id?: string;
-  nickname: string;
-  name?: string;
-  about?: string;
+  photoUrl: string;
   createdAt?: Date;
 }
 
 @Table({
-  modelName: "User",
-  tableName: "users",
+  modelName: "Post",
+  tableName: "posts",
 })
-export default class User extends Model<User> {
+export default class Post extends Model<Post> {
   @Column({
     allowNull: false,
     primaryKey: true,
@@ -29,21 +27,9 @@ export default class User extends Model<User> {
 
   @Column({
     allowNull: false,
-    type: DataType.STRING(255),
-  })
-  public nickname: string;
-
-  @Column({
-    defaultValue: "",
-    type: DataType.STRING(255),
-  })
-  public name: string;
-
-  @Column({
-    defaultValue: "",
     type: DataType.STRING(511),
   })
-  public about: string;
+  public photoUrl: string;
 
   @CreatedAt
   public createdAt: Date;
