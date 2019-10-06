@@ -34,6 +34,12 @@ export default class User extends Model<User> {
   public nickname: string;
 
   @Column({
+    allowNull: false,
+    type: DataType.STRING,
+  })
+  public password: string;
+
+  @Column({
     defaultValue: "",
     type: DataType.STRING(255),
   })

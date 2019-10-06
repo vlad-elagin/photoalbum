@@ -6,9 +6,13 @@ import {
   CreatedAt,
 } from "sequelize-typescript";
 
+// post has many urls
+// post can be liked by
+
 export interface IPost {
   id?: string;
-  photoUrl: string;
+  photoUrls: string[];
+  likedBy: string[];
   createdAt?: Date;
 }
 

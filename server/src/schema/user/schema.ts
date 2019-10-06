@@ -8,6 +8,9 @@ class User {
   @Field()
   public nickname: string;
 
+  @Field({ nullable: false })
+  public password: string;
+
   @Field({ nullable: true })
   public name?: string;
 
