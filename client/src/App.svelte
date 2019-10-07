@@ -1,5 +1,7 @@
 <script>
+  import { Router, Route } from "svero";
   import Header from "./components/Header.svelte";
+  import Login from "./components/Login.svelte";
 </script>
 
 <style type="text/scss">
@@ -16,8 +18,9 @@
 
 <main class="d-flex flex-column">
   <Header />
-  <div
-    class="content d-flex align-items-center justify-content-center flex-grow-1">
-    hi i am content
+  <div class="d-flex align-items-center justify-content-center flex-grow-1">
+    <Router>
+      <Route path="/login" component={Login} />
+    </Router>
   </div>
 </main>

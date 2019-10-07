@@ -1,4 +1,6 @@
 import * as bodyParser from "body-parser";
+import express from "express";
+import path from "path";
 import { Server } from "@overnightjs/core";
 import { Logger } from "@overnightjs/logger";
 import { GraphQLSchema } from "graphql";
@@ -44,5 +46,11 @@ export default class PhotoalbumServer extends Server {
   private initExpressApp(): void {
     this.app.use(bodyParser.json());
     this.app.use(bodyParser.urlencoded({ extended: true }));
+
+    // serve static files
+    this.app.get(/^(?!\/api).+/, express.static("build/public"));
+    this.app.get(/^(?!\/api).+/, (req, res) => {
+      res.sendFile(path.join(process.cwd() + "/build/public/index.html"));
+    });
   }
 }
