@@ -2,5 +2,7 @@ node_modules
 yarn-error.log
 .DS_Store
 .env
-build
+build/index.js
+build/public/client.js
+build/public/client.js.map
 server/build
