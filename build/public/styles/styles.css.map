@@ -1,0 +1,14 @@
+{
+  "version": 3,
+  "file": "styles.css",
+  "sources": [
+    "../../../client/src/components/Header.svelte",
+    "../../../client/src/App.svelte"
+  ],
+  "sourcesContent": [
+    "<style>\n  header {\n    background-color: var(--primary);\n    height: 60px;\n    padding: 0 15px;\n  }\n</style>\n\n<header class=\"d-flex justify-content-between align-items-center\">\n  <span class=\"text-light font-weight-bold\">Photoalbum</span>\n\n  <button type=\"button\" class=\"btn btn-outline-light\">Log In</button>\n</header>\n",
+    "<script>\n  import Header from \"./components/Header.svelte\";\n</script>\n\n<style type=\"text/scss\">\n  :global(html, body) {\n    width: 100%;\n    height: 100%;\n  }\n\n  main {\n    width: 100%;\n    height: 100%;\n  }\n</style>\n\n<main class=\"d-flex flex-column\">\n  <Header />\n  <div\n    class=\"content d-flex align-items-center justify-content-center flex-grow-1\">\n    hi i am content\n  </div>\n</main>\n"
+  ],
+  "names": [],
+  "mappings": "AACE,MAAM,eAAC,CAAC,AACN,gBAAgB,CAAE,IAAI,SAAS,CAAC,CAChC,MAAM,CAAE,IAAI,CACZ,OAAO,CAAE,CAAC,CAAC,IAAI,AACjB,CAAC;ACAO,UAAU,AAAE,CAAC,AACnB,KAAK,CAAE,IAAI,CACX,MAAM,CAAE,IAAI,AACd,CAAC,AAED,IAAI,eAAC,CAAC,AACJ,KAAK,CAAE,IAAI,CACX,MAAM,CAAE,IAAI,AACd,CAAC"
+}
