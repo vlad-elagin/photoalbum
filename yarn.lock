@@ -5272,6 +5272,11 @@ supports-color@^5.2.0, supports-color@^5.3.0:
   dependencies:
     has-flag "^3.0.0"
 
+svelte-notifications@^0.9.8:
+  version "0.9.8"
+  resolved "https://registry.yarnpkg.com/svelte-notifications/-/svelte-notifications-0.9.8.tgz#9ae0ea897ad16eeef9583a803e42e082a28b8eb1"
+  integrity sha512-3fubiKfRZgqL++eZUizw5CiTJLc9Guc+NS2hiSEETWBWnT57W86kaphTUauUKjXT9SeWZfCoRB6PTyZgqOmWUA==
+
 svelte-preprocess@^3.1.2:
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/svelte-preprocess/-/svelte-preprocess-3.1.2.tgz#5fd226b3e6a5a47ea2c58241b2937e200b7a3487"

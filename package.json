@@ -30,6 +30,7 @@
     "sequelize-cli": "^5.5.1",
     "sequelize-typescript": "^1.0.0",
     "svelte": "^3.12.1",
+    "svelte-notifications": "^0.9.8",
     "svelte-preprocess": "^3.1.2",
     "svero": "^1.0.0",
     "type-graphql": "^0.17.5"

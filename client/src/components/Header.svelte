@@ -9,5 +9,5 @@
 <header class="d-flex justify-content-between align-items-center">
   <span class="text-light font-weight-bold">Photoalbum</span>
 
-  <button type="button" class="btn btn-outline-light">Log In</button>
+  <a href="/login" class="btn btn-outline-light">Log In</a>
 </header>
