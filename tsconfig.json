@@ -19,7 +19,8 @@
       "@server/*": ["server/src/*"],
       "@models/*": ["server/src/models/*"],
       "@schema/*": ["server/src/schema/*"],
-      "@services/*": ["server/src/services/*"]
+      "@services/*": ["server/src/services/*"],
+      "@utils/*": ["server/src/utils/*"]
     }
   }
 }

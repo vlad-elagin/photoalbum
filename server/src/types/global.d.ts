@@ -3,6 +3,7 @@ declare global {
     export interface ProcessEnv {
       PORT: string;
       NODE_ENV: string;
+      SALT: string;
 
       DB_USER: string;
       DB_PASS: string;
@@ -14,4 +15,4 @@ declare global {
   }
 }
 
-export {};
+export { };

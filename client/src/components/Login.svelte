@@ -2,14 +2,14 @@
   import { getNotificationsContext } from "svelte-notifications";
   import AuthService from "../services/auth";
 
-  let email = "";
+  let nickname = "";
   let password = "";
 
   const submit = async event => {
     event.preventDefault();
     try {
       await AuthService.authenticate({
-        email,
+        nickname,
         password
       });
     } catch (err) {
@@ -26,14 +26,13 @@
 
 <form on:submit={submit}>
   <div class="form-group">
-    <label for="email-field">Email address</label>
+    <label for="email-field">Nickname</label>
     <input
-      bind:value={email}
-      type="email"
+      bind:value={nickname}
       required
       class="form-control"
-      id="email-field"
-      placeholder="email@address.com" />
+      id="nickname-field"
+      placeholder="Your nickname" />
   </div>
 
   <div class="form-group">

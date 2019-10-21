@@ -1,4 +1,7 @@
 import { writable } from "svelte/store";
+import gql from 'graphql-tag';
+
+import apolloClient from '../utils/apolloClient';
 
 class AuthService {
   constructor() {
@@ -10,7 +13,20 @@ class AuthService {
    */
   async authenticate(credentials) {
     console.log("logging with", credentials);
-    throw new Error("suka!");
+    try {
+      const res = await apolloClient.mutate({
+        variables: credentials,
+        mutation: gql`
+          mutation ($nickname: String!, $password: String!) {
+            login(nickname: $nickname, password: $password)
+          }
+        `,
+      });
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+      throw err;
+    }
   }
 
   getCredentials() {
@@ -21,7 +37,7 @@ class AuthService {
     return store;
   }
 
-  setCredentials(auth) {}
+  setCredentials(auth) { }
 }
 
 export default new AuthService();

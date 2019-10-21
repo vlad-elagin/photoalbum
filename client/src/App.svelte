@@ -1,7 +1,7 @@
 <script>
   import { Router, Route, navigateTo } from "svero";
-
   import Notifications from "svelte-notifications";
+
   import Notification from "./components/Notification.svelte";
   import Header from "./components/Header.svelte";
   import Login from "./components/Login.svelte";

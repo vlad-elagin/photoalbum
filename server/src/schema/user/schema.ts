@@ -8,7 +8,7 @@ class User {
   @Field()
   public nickname: string;
 
-  @Field({ nullable: false })
+  @Field({ nullable: true })
   public password: string;
 
   @Field({ nullable: true })

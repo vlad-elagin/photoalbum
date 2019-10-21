@@ -30,6 +30,7 @@ module.exports = {
       "@models": path.resolve(__dirname, "server/src/models"),
       "@schema": path.resolve(__dirname, "server/src/schema"),
       "@services": path.resolve(__dirname, "server/src/services"),
+      "@utils": path.resolve(__dirname, "server/src/utils"),
     },
   },
   watch: NODE_ENV === "development",
