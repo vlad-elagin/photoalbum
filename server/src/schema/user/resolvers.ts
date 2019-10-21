@@ -24,6 +24,13 @@ class UserResolver {
     return UserService.getUser(id);
   }
 
+  // TEST ONLY, REMOVE LATER
+  @Query(returns => [User])
+  public async getUsers() {
+    const users = await UserService.getAll();
+    return users;
+  }
+
   @Mutation(returns => User)
   public async login(
     @Arg("nickname") nickname: string,

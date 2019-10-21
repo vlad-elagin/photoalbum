@@ -12,6 +12,12 @@ module.exports = {
       name: 'John Doe',
       about: '',
       createdAt: new Date(),
+      updatedAt: new Date(),
     }]);
+  },
+  down: (queryInterface) => {
+    return queryInterface.bulkDelete('users', {
+      nickname: 'john-doe',
+    });
   }
 };

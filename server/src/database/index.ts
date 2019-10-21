@@ -5,11 +5,10 @@ import Post from "@models/post";
 
 const models = [User, Post];
 
-const { DB_NAME, DB_HOST, DB_USER, DB_PASS } = process.env;
+const { DEV_DATABASE_URL } = process.env;
 
-const sequelize: Sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASS, {
-  host: DB_HOST,
-  dialect: "mysql",
+const sequelize: Sequelize = new Sequelize(DEV_DATABASE_URL, {
+  dialect: "postgres",
   logging: false,
 });
 

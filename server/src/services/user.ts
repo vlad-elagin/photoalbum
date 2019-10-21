@@ -27,6 +27,11 @@ class UserService {
 
     // return newly created user
   }
+
+  // TEST ONLY, remove later
+  public getAll() {
+    return User.findAll();
+  }
 }
 
 export default new UserService();

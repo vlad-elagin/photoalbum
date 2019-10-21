@@ -5,10 +5,7 @@ declare global {
       NODE_ENV: string;
       SALT: string;
 
-      DB_USER: string;
-      DB_PASS: string;
-      DB_NAME: string;
-      DB_HOST: string;
+      DEV_DATABASE_URL: string;
 
       APOLLO_ENGINE_PATH: string;
     }

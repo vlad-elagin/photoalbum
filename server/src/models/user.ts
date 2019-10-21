@@ -4,6 +4,7 @@ import {
   Model,
   DataType,
   CreatedAt,
+  UpdatedAt
 } from "sequelize-typescript";
 
 export interface IUser {
@@ -53,4 +54,7 @@ export default class User extends Model<User> {
 
   @CreatedAt
   public createdAt: Date;
+
+  @UpdatedAt
+  public updatedAt: Date;
 }
