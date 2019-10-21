@@ -49,8 +49,13 @@ class UserResolver {
     @Arg("nickname") nickname: string,
     @Arg("password") password: string
   ): Promise<User> {
-    console.log('registering');
-    return UserService.register(nickname, password);
+    let user;
+    try {
+      user = await UserService.register(nickname, password);
+    } catch (err) {
+      throw new Error(err);
+    }
+    return user;
   }
 }
 

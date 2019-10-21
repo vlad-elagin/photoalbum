@@ -1,7 +1,11 @@
+import bcrypt from 'bcrypt';
+import uuidv4 from 'uuid/v4';
+
 import db from "@server/database";
 import { IUser } from "@models/user";
 
 const { User } = db.models;
+const { SALT } = process.env;
 
 class UserService {
   public getUser(id: string): Promise<IUser> {
@@ -13,19 +17,25 @@ class UserService {
   }
 
   public async register(nickname: string, password: string) {
-    const { newUser, created } = await User.findOrCreate({
-      where: { nickname }, defaults: {
+    const [newUser, created] = await User.findOrCreate({
+      where: { nickname },
+      defaults: {
+        id: uuidv4(),
         nickname,
-        // TODO hash
-        password,
+        password: bcrypt.hashSync(password, parseInt(SALT, 10)),
+        name: '',
+        about: '',
+        createdAt: new Date(),
+        updatedAt: new Date(),
       }
     });
 
+
     if (!created) {
-      // signal that unlucky
+      return Promise.reject('This nickname is already taken.');
     }
 
-    // return newly created user
+    return Promise.resolve(newUser);
   }
 
   // TEST ONLY, remove later
