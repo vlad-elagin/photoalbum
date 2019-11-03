@@ -18,13 +18,34 @@ class AuthService {
         variables: credentials,
         mutation: gql`
           mutation ($nickname: String!, $password: String!) {
-            login(nickname: $nickname, password: $password)
+            login(nickname: $nickname, password: $password) {
+              token,
+              
+            }
           }
         `,
       });
-      console.log(res);
     } catch (err) {
-      console.log(err);
+      throw err;
+    }
+  }
+
+  async register(credentials) {
+    console.log("registering with", credentials);
+    try {
+      const { data } = await apolloClient.mutate({
+        variables: credentials,
+        mutation: gql`
+          mutation ($nickname: String!, $password: String!) {
+            register(nickname: $nickname, password: $password) {
+              nickname
+            }
+          }
+        `,
+      });
+      return Promise.resolve(data.register.nickname);
+    } catch (err) {
+      console.dir(err);
       throw err;
     }
   }

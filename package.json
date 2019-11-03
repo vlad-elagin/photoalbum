@@ -11,7 +11,8 @@
     "server:start:dev": "yarn nodemon -r dotenv/config -L ./build/index.js",
     "start": "yarn run server:build & yarn run server:start",
     "start:dev": "yarn run server:build:dev & yarn run server:start:dev",
-    "client:start:dev": "NODE_ENV=development rollup -c ./client/rollup.config.js -w"
+    "client:start:dev": "NODE_ENV=development rollup -c ./client/rollup.config.js -w",
+    "test": "yarn run jest --setupFiles dotenv/config --config=./tests/jest.config.js"
   },
   "dependencies": {
     "@overnightjs/core": "^1.6.9",
@@ -44,11 +45,19 @@
     "uuid": "^3.3.3"
   },
   "devDependencies": {
+    "@babel/core": "^7.6.4",
+    "@babel/preset-env": "^7.6.3",
     "@types/dotenv": "^6.1.1",
     "@types/express": "^4.17.1",
     "@types/graphql": "^14.5.0",
+    "@types/jest": "^24.0.21",
+    "babel-jest": "^24.9.0",
+    "expect-puppeteer": "^4.3.0",
+    "jest": "^24.9.0",
+    "jest-puppeteer": "^4.3.0",
     "node-sass": "^4.12.0",
     "nodemon": "^1.19.2",
+    "puppeteer": "^2.0.0",
     "rollup": "^1.23.1",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-resolve": "^5.2.0",

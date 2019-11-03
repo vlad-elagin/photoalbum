@@ -49,9 +49,9 @@ export default class PhotoalbumServer extends Server {
     this.app.use(bodyParser.urlencoded({ extended: true }));
 
     // serve static files
-    // this.app.get(/^(?!\/api).+/, express.static("build/public"));
-    // this.app.get(/^(?!\/api).+/, (req, res) => {
-    //   res.sendFile(path.join(process.cwd() + "/build/public/index.html"));
-    // });
+    this.app.get(/^(?!\/api).+/, express.static("build/public"));
+    this.app.get(/^(?!\/api).+/, (req, res) => {
+      res.sendFile(path.join(process.cwd() + "/build/public/index.html"));
+    });
   }
 }
