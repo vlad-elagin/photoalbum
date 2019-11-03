@@ -6,13 +6,17 @@ import {
   CreatedAt,
   UpdatedAt
 } from "sequelize-typescript";
+import bcrypt from 'bcrypt';
 
 export interface IUser {
-  id?: string;
+  id: string;
   nickname: string;
-  name?: string;
-  about?: string;
-  createdAt?: Date;
+  password: string;
+  name: string;
+  about: string;
+  createdAt: Date;
+
+  checkPassword(password: string): Promise<boolean>;
 }
 
 @Table({
@@ -57,4 +61,8 @@ export default class User extends Model<User> {
 
   @UpdatedAt
   public updatedAt: Date;
+
+  public checkPassword(password: string): Promise<boolean> {
+    return bcrypt.compare(password, this.password);
+  }
 }

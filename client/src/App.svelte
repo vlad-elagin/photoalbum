@@ -10,6 +10,7 @@
   import AuthService from "./services/auth";
 
   const credentials = AuthService.getCredentials();
+
   if (credentials === null) {
     navigateTo("/login");
   } else {
