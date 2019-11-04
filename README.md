@@ -11,3 +11,6 @@ yarn container:deploy
 ```bash
 yarn start:dev
 ```
+
+# Testing
+Build server and client, start server in test mode, perform `yarn test`

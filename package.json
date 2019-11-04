@@ -7,10 +7,11 @@
     "container:deploy": "bash ./scripts/deploy.sh",
     "server:build": "yarn webpack -r dotenv/config --config ./webpack.config.js",
     "server:build:dev": "yarn webpack -r dotenv/config --config ./webpack.config.js",
-    "server:start:": "node -r dotenv/config ./build/index.js",
+    "server:start": "node -r dotenv/config ./build/index.js",
     "server:start:dev": "yarn nodemon -r dotenv/config -L ./build/index.js",
+    "server:start:test": "NODE_ENV=test yarn server:start",
     "start": "yarn run server:build & yarn run server:start",
-    "start:dev": "yarn run server:build:dev & yarn run server:start:dev",
+    "start:dev": "NODE_ENV=development yarn run server:build:dev & yarn run server:start:dev",
     "client:start:dev": "NODE_ENV=development rollup -c ./client/rollup.config.js -w",
     "test": "yarn run jest --setupFiles dotenv/config --config=./tests/jest.config.js"
   },

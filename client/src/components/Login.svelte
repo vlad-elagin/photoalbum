@@ -1,22 +1,11 @@
 <script>
-  import { getNotificationsContext } from "svelte-notifications";
   import AuthService from "../services/auth";
-
-  const { addNotification } = getNotificationsContext();
+  import notify from "../utils/notification";
 
   let nickname = "";
   let password = "";
   let register = false;
   let confirmPassword = "";
-
-  const successNotification = message => {
-    addNotification({
-      text: message,
-      position: "bottom-right",
-      removeAfter: 5 * 1000,
-      type: "success"
-    });
-  };
 
   const submit = async () => {
     try {
@@ -28,7 +17,8 @@
           nickname,
           password
         });
-        successNotification(
+        notify(
+          "success",
           `Welcome to Photoalbum, ${registeredNickname}. You can log in now.`
         );
         nickname = "";
@@ -42,13 +32,11 @@
         });
       }
     } catch (err) {
-      console.dir(err);
-      addNotification({
-        text: err.message,
-        position: "bottom-right",
-        removeAfter: 5 * 1000,
-        type: "danger"
-      });
+      if (err.graphQLErrors) {
+        notify("danger", err.graphQLErrors);
+      } else {
+        notify("danger", err.message);
+      }
     }
   };
 </script>
