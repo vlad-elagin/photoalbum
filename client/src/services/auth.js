@@ -14,7 +14,7 @@ class AuthService {
   async authenticate(credentials) {
     console.log("logging with", credentials);
     try {
-      const res = await apolloClient.mutate({
+      const { data: { token } } = await apolloClient.mutate({
         variables: credentials,
         mutation: gql`
           mutation ($nickname: String!, $password: String!) {
@@ -25,6 +25,9 @@ class AuthService {
           }
         `,
       });
+
+      this.setCredentials(token);
+      return Promise.resolve();
     } catch (err) {
       throw err;
     }
@@ -51,14 +54,16 @@ class AuthService {
   }
 
   getCredentials() {
-    let store = localStorage.getItem("photoalbum-auth-credentials");
-    if (store) {
-      store = JSON.parse(store);
+    const token = localStorage.getItem("photoalbum-token");
+    if (!token) {
+      return null;
     }
-    return store;
+    return token;
   }
 
-  setCredentials(auth) { }
+  setCredentials(token) {
+    localStorage.setItem('photoalbum-token', token);
+  }
 }
 
 export default new AuthService();
