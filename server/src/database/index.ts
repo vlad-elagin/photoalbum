@@ -17,7 +17,7 @@ const sequelize: Sequelize = new Sequelize(dbUrl, {
 
 sequelize.addModels(models);
 
-sequelize.sync({ force: true });
+sequelize.sync({ force: false });
 
 const database = {
   models: sequelize.models,

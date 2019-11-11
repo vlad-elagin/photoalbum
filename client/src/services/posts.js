@@ -9,8 +9,9 @@ class PostsService {
       query: gql`
         query {
           posts {
-            posts,
-            count
+            id,
+            photoUrl,
+            createdAt
           }
         }
       `,

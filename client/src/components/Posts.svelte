@@ -1,7 +1,15 @@
 <script>
   import PostsService from '../services/posts';
 
-  const photosQuery = PostsService.getPhotos();
+  let posts = null;
+  PostsService
+    .getPhotos()
+    .then(res => {
+      console.log(res.data);
+      posts = res.data.posts;
+    })
+    .catch(err => console.log(err));
+  
 </script>
 
 <style>
@@ -21,13 +29,13 @@
 <div class="photos-page">
   <div class="photos-page-content">
     <div class="photos-page-header d-flex align-items-center justify-content-between">
-      {#await photosQuery}
+      {#if posts === null}
         <span class="amount">Loading photos...</span>
-      {:then photos}
-        You have {photos} photos.
-      {:catch}
-        Failed to load photos.
-      {/await}
+      {:else if posts.length === 0}
+        <span class="amount">You have no photos!</span>
+      {:else}
+        <span class="amount">You have {posts.length} photos.</span>
+      {/if}
       <button class="btn btn-primary">Add new photo</button>
     </div>
   </div>
