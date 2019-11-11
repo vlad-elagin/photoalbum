@@ -1,18 +1,17 @@
-import { writable } from "svelte/store";
 import gql from 'graphql-tag';
+import { writable } from 'svelte/store';
 
 import apolloClient from '../utils/apolloClient';
 
 class AuthService {
   constructor() {
-    this.store = writable(this.getCredentials());
+    this.store = writable(!!this.getCredentials());
   }
 
   /**
    * Get token via credentials and save it
    */
   async authenticate(credentials) {
-    console.log("logging with", credentials);
     try {
       const { data: { token } } = await apolloClient.mutate({
         variables: credentials,
@@ -62,7 +61,13 @@ class AuthService {
   }
 
   setCredentials(token) {
+    this.store.set(true);
     localStorage.setItem('photoalbum-token', token);
+  }
+
+  removeCredentials() {
+    this.store.set(false);
+    localStorage.removeItem('photoalbum-token');
   }
 }
 

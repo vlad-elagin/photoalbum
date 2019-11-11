@@ -2,8 +2,7 @@ import puppeteer from 'puppeteer';
 import { setDefaultOptions } from 'expect-puppeteer';
 import { Client } from 'pg';
 
-const dbConfig = require('../server/src/database/config');
-const testUrl = dbConfig.test.url;
+const { development: { url: dbUrl } } = require('../server/src/database/config');
 
 const { PORT } = process.env;
 const url = `http://localhost:${PORT}`;
@@ -13,7 +12,7 @@ setDefaultOptions({ timeout });
 describe('Photoalbum', () => {
   let browser;
   let page;
-  const pgClient = new Client({ connectionString: testUrl });
+  const pgClient = new Client({ connectionString: dbUrl });
 
   const testUser = {
     nickname: 'test nickname',
@@ -23,7 +22,7 @@ describe('Photoalbum', () => {
   beforeAll(async () => {
     browser = await puppeteer.launch({
       headless: false,
-      slowMo: 40,
+      // slowMo: 40,
       defaultViewport: {
         height: 768,
         width: 1024,
@@ -35,10 +34,11 @@ describe('Photoalbum', () => {
   }, timeout);
 
   afterAll(async () => {
-    await pgClient.connect();
+    pgClient.connect();
+
     await pgClient.query('DELETE FROM users');
     await browser.close();
-  }, timeout);
+  }, timeout * 2);
 
   it('Redirects to login page', async () => {
     await expect(page.url()).toBe(`${url}/login`);

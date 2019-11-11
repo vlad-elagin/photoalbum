@@ -13,7 +13,7 @@
     "start": "yarn run server:build & yarn run server:start",
     "start:dev": "NODE_ENV=development yarn run server:build:dev & yarn run server:start:dev",
     "client:start:dev": "NODE_ENV=development rollup -c ./client/rollup.config.js -w",
-    "test": "yarn run jest --setupFiles dotenv/config --config=./tests/jest.config.js"
+    "test": "yarn run jest --setupFiles dotenv/config --config=./tests/jest.config.js --detectOpenHandles"
   },
   "dependencies": {
     "@overnightjs/core": "^1.6.9",

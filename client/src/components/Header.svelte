@@ -1,3 +1,14 @@
+<script>
+  import AuthService from '../services/auth';
+
+  let isLogged = null;
+  AuthService.store.subscribe(val => isLogged = val);
+
+  const logOut = () => {
+    AuthService.removeCredentials();
+  };
+</script>
+
 <style>
   header {
     background-color: var(--primary);
@@ -9,5 +20,13 @@
 <header class="d-flex justify-content-between align-items-center">
   <span class="text-light font-weight-bold">Photoalbum</span>
 
-  <a href="/login" class="btn btn-outline-light">Log In</a>
+  {#if isLogged === true}
+    <a
+      href="/login"
+      on:click={logOut}
+      class="btn btn-outline-light"
+    >Log Out</a>
+  {:else}
+    <a href="/login" class="btn btn-outline-light">Log In</a>
+  {/if}
 </header>

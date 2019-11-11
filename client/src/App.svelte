@@ -5,7 +5,7 @@
   import Notification from "./components/Notification.svelte";
   import Header from "./components/Header.svelte";
   import Login from "./components/Login.svelte";
-  import Photos from "./components/Photos.svelte";
+  import Posts from "./components/Posts.svelte";
 
   import AuthService from "./services/auth";
 
@@ -36,7 +36,7 @@
     <div class="d-flex align-items-center justify-content-center flex-grow-1">
       <Router path="/">
         <Route path="/login" component={Login} />
-        <Route path="/photos" component={Photos} />
+        <Route path="/photos" component={Posts} />
       </Router>
     </div>
   </main>
