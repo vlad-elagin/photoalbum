@@ -4,9 +4,11 @@ import {
   Model,
   DataType,
   CreatedAt,
-  UpdatedAt
+  UpdatedAt,
+  HasMany
 } from "sequelize-typescript";
 import bcrypt from 'bcrypt';
+import Post from '@models/post';
 
 export interface IUser {
   id: string;
@@ -14,8 +16,10 @@ export interface IUser {
   password: string;
   name: string;
   about: string;
+  posts: Post[];
+  likes: Post[];
   createdAt: Date;
-
+  updatedAt: Date;
   checkPassword(password: string): Promise<boolean>;
 }
 
@@ -55,6 +59,17 @@ export default class User extends Model<User> {
     type: DataType.STRING(511),
   })
   public about: string;
+
+  @HasMany(() => Post, {
+    foreignKey: 'author',
+    as: 'posts'
+  })
+  public posts: Post[];
+
+  @HasMany(() => Post, {
+    foreignKey: 'likedBy',
+  })
+  public likes: Post[];
 
   @CreatedAt
   public createdAt: Date;

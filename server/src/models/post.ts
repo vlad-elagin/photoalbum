@@ -4,15 +4,18 @@ import {
   Model,
   DataType,
   CreatedAt,
+  BelongsTo
 } from "sequelize-typescript";
 
-// post has many urls
+import User from '@models/user';
+
 // post can be liked by
 
 export interface IPost {
   id?: string;
-  photoUrls: string[];
-  likedBy: string[];
+  photoSrc: string[];
+  author: User;
+  likedBy: User[];
   createdAt?: Date;
 }
 
@@ -31,9 +34,19 @@ export default class Post extends Model<Post> {
 
   @Column({
     allowNull: false,
-    type: DataType.STRING(511),
+    type: DataType.TEXT,
   })
-  public photoUrl: string;
+  public photoSrc: string;
+
+  @Column({
+    allowNull: false,
+    type: DataType.TEXT,
+    defaultValue: '',
+  })
+  public description: string;
+
+  // @BelongsTo(() => User, 'author')
+  // public author: User;
 
   @CreatedAt
   public createdAt: Date;
