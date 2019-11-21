@@ -18,11 +18,14 @@ module.exports = {
     const photo2 = fs.readFileSync(path.resolve(
       __dirname, '../../photo-sources/2.jpg')
     );
+    const photo3 = fs.readFileSync(path.resolve(
+      __dirname, '../../photo-sources/3.jpg')
+    );
 
     return queryInterface.bulkInsert('posts', [
       {
         id: uuid(),
-        photoSrc: `data:image/jpg;base64;${Buffer.from(photo1).toString('base64')}`,
+        photoSrc: `data:image/jpg;base64,${photo1.toString('base64')}`,
         author: users['john-doe'],
         likedBy: null,
         description: 'Oh my...',
@@ -31,10 +34,19 @@ module.exports = {
       },
       {
         id: uuid(),
-        photoSrc: `data:image/jpg;base64;${Buffer.from(photo2).toString('base64')}`,
+        photoSrc: `data:image/jpg;base64,${photo2.toString('base64')}`,
         author: users['john-doe'],
         likedBy: null,
         description: 'Soft kitty warm kitty little ball of fur',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        id: uuid(),
+        photoSrc: `data:image/jpg;base64,${photo3.toString('base64')}`,
+        author: users['john-doe'],
+        likedBy: null,
+        description: 'Сегодня родина наша - а завтра вселенная вся',
         createdAt: new Date(),
         updatedAt: new Date(),
       },

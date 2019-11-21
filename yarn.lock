@@ -7822,6 +7822,11 @@ timers-ext@^0.1.5:
     es5-ext "~0.10.46"
     next-tick "1"
 
+tinytime@^0.2.6:
+  version "0.2.6"
+  resolved "https://registry.yarnpkg.com/tinytime/-/tinytime-0.2.6.tgz#3d68b8eda06fd2a0d650f9206c57e4e44280bfa7"
+  integrity sha512-FdiVbzssIGxpi9tuDWcMnDb4dUeoYIA4rpsdx1wVzvCaGMk5pt4WyFg2G+MFZ08HGyWB/CM/ajQfLKp6CYiD3w==
+
 tmpl@1.0.x:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/tmpl/-/tmpl-1.0.4.tgz#23640dd7b42d00433911140820e5cf440e521dd1"

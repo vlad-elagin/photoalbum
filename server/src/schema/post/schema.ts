@@ -6,7 +6,16 @@ class Post {
   public id: string;
 
   @Field()
-  public photoUrl: string;
+  public photoSrc: string;
+
+  @Field()
+  public author: string;
+
+  @Field()
+  public description: string;
+
+  // @Field({ nullable: true })
+  // public likedBy?: string[];
 
   @Field()
   public createdAt: Date;

@@ -10,8 +10,10 @@ class PostsService {
         query {
           posts {
             id,
-            photoUrl,
-            createdAt
+            photoSrc,
+            createdAt,
+            description,
+            author
           }
         }
       `,

@@ -11,7 +11,7 @@
     "server:start:dev": "yarn nodemon -r dotenv/config -L ./build/index.js",
     "server:start:test": "NODE_ENV=test yarn server:start",
     "start": "yarn run server:build & yarn run server:start",
-    "start:dev": "NODE_ENV=development yarn run server:build:dev & yarn run server:start:dev",
+    "start:dev": "NODE_ENV=development yarn run server:build:dev & yarn run server:start:dev & yarn client:start:dev",
     "client:start:dev": "NODE_ENV=development rollup -c ./client/rollup.config.js -w",
     "test": "yarn run jest --setupFiles dotenv/config --config=./tests/jest.config.js --detectOpenHandles",
     "seed": "yarn sequelize db:seed:all"
@@ -43,6 +43,7 @@
     "svelte-notifications": "^0.9.8",
     "svelte-preprocess": "^3.1.2",
     "svero": "^1.0.0",
+    "tinytime": "^0.2.6",
     "type-graphql": "^0.17.5",
     "uuid": "^3.3.3"
   },

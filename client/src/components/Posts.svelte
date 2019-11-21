@@ -1,5 +1,7 @@
 <script>
   import PostsService from '../services/posts';
+  import Post from './Post.svelte';
+  import PostDetails from './PostDetails.svelte';
 
   let posts = null;
   PostsService
@@ -10,6 +12,14 @@
     })
     .catch(err => console.log(err));
   
+  let activePost = null;
+  const onPostClick = (post) => {
+    console.log('clicked post');
+    activePost = post;
+  }
+  const closeDetails = () => {
+    activePost = null;
+  }
 </script>
 
 <style>
@@ -23,6 +33,15 @@
     width: 100%;
     max-width: 1024px;
     margin: 0 auto;
+  }
+
+  .photos-page-header {
+    padding: 0 15px;
+    margin-bottom: 25px;
+  }
+
+  .row {
+    margin: 0;
   }
 </style>
 
@@ -38,5 +57,19 @@
       {/if}
       <button class="btn btn-primary">Add new photo</button>
     </div>
+
+    <div class="photos-page-wrapper container">
+      <div class="row">
+        {#if Array.isArray(posts)}
+          {#each posts as post}
+            <Post {post} {onPostClick} />
+          {/each}
+        {/if}
+      </div>
+    </div>
   </div>
+
+  {#if activePost !== null}
+    <PostDetails post={activePost} close={closeDetails} />
+  {/if}
 </div>

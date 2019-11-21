@@ -7,7 +7,6 @@ import PostService from "@services/post";
 class PostResolver {
   @Query(returns => [Post])
   public posts() {
-    console.log('getting posts in resolver');
     return PostService.getPosts();
   }
 }

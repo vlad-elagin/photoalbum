@@ -27,6 +27,7 @@
   main {
     width: 100%;
     height: 100%;
+    background-color: darken(#fff, 5%);
   }
 </style>
 
