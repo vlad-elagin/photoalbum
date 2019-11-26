@@ -38,6 +38,13 @@ export default class PhotoalbumServer extends Server {
   private initApolloServer(schema: GraphQLSchema): void {
     this.apolloServer = new ApolloServer({
       schema,
+      context: ({ req }) => {
+        const context = {
+          req,
+          user: req.user,
+        };
+        return context;
+      }
     });
     this.apolloServer.applyMiddleware({
       app: this.app,
@@ -50,7 +57,7 @@ export default class PhotoalbumServer extends Server {
     this.app.use(bodyParser.urlencoded({ extended: true }));
 
     const { JWT_SECRET } = process.env;
-    this.app.use(jwt({
+    this.app.use('/api/graphql', jwt({
       secret: JWT_SECRET,
       credentialsRequired: false,
     }));

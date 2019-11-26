@@ -6,7 +6,7 @@ import { ROLE_SELF, ROLE_AUTHORIZED } from "@server/utils";
 
 @Resolver()
 export class UserResolver {
-  @Authorized([ROLE_SELF, ROLE_AUTHORIZED])
+  @Authorized()
   @Query(returns => User)
   public user(@Arg("id") id: string) {
     return UserService.getUser(id);
