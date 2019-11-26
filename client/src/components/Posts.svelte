@@ -7,14 +7,12 @@
   PostsService
     .getPhotos()
     .then(res => {
-      console.log(res.data);
       posts = res.data.posts;
     })
     .catch(err => console.log(err));
   
   let activePost = null;
   const onPostClick = (post) => {
-    console.log('clicked post');
     activePost = post;
   }
   const closeDetails = () => {

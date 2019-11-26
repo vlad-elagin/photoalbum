@@ -13,18 +13,16 @@ class AuthService {
    */
   async authenticate(credentials) {
     try {
-      const { data: { token } } = await apolloClient.mutate({
+      const { data: { login: { token } } } = await apolloClient.mutate({
         variables: credentials,
         mutation: gql`
           mutation ($nickname: String!, $password: String!) {
             login(nickname: $nickname, password: $password) {
               token,
-              
             }
           }
         `,
       });
-
       this.setCredentials(token);
       return Promise.resolve();
     } catch (err) {
@@ -33,7 +31,6 @@ class AuthService {
   }
 
   async register(credentials) {
-    console.log("registering with", credentials);
     try {
       const { data } = await apolloClient.mutate({
         variables: credentials,

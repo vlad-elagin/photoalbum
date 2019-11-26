@@ -8,6 +8,7 @@ declare global {
       DEV_DATABASE_URL: string;
 
       APOLLO_ENGINE_PATH: string;
+      JWT_SECRET: string;
     }
   }
 }

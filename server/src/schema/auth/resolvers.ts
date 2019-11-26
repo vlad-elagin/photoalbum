@@ -16,6 +16,8 @@ export class AuthResolver {
     @Arg("nickname") nickname: string,
     @Arg("password") password: string
   ): Promise<IAuthCredentials> {
+    console.log('logging with');
+    console.log(nickname, password);
     const user = await UserService.getUserByNickname(nickname);
     if (!user) {
       throw new Error('User not found.');
@@ -26,10 +28,12 @@ export class AuthResolver {
       throw new Error('Password is incorrect');
     }
     // TODO generate token
-    return {
-      token: 'example token',
+    console.log('returning token');
+    const response: IAuthCredentials = {
+      token: 'exampletoken',
       user,
     };
+    return response;
   }
 
   @Mutation(returns => User)

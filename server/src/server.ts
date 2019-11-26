@@ -6,6 +6,7 @@ import { Logger } from "@overnightjs/logger";
 import { GraphQLSchema } from "graphql";
 import { buildSchema } from "type-graphql";
 import { ApolloServer } from "apollo-server-express";
+import jwt from "express-jwt";
 
 import { resolvers } from "@schema/resolvers";
 import { authChecker } from "@server/utils";
@@ -47,6 +48,12 @@ export default class PhotoalbumServer extends Server {
   private initExpressApp(): void {
     this.app.use(bodyParser.json());
     this.app.use(bodyParser.urlencoded({ extended: true }));
+
+    const { JWT_SECRET } = process.env;
+    this.app.use(jwt({
+      secret: JWT_SECRET,
+      credentialsRequired: false,
+    }));
 
     // serve static files
     this.app.get(/^(?!\/api).+/, express.static("build/public"));
