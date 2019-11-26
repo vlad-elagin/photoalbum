@@ -13,7 +13,7 @@ class AuthService {
    */
   async authenticate(credentials) {
     try {
-      const { data: { login: { token } } } = await apolloClient.mutate({
+      const { data: { login: { token }, errors } } = await apolloClient.mutate({
         variables: credentials,
         mutation: gql`
           mutation ($nickname: String!, $password: String!) {
@@ -23,6 +23,7 @@ class AuthService {
           }
         `,
       });
+
       this.setCredentials(token);
       return Promise.resolve();
     } catch (err) {

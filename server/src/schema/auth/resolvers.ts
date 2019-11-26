@@ -1,4 +1,5 @@
 import { Resolver, Arg, Mutation } from "type-graphql";
+import jwt from 'jsonwebtoken';
 
 import { User } from "@schema/user/schema";
 import { Auth } from '@schema/auth/schema';
@@ -16,8 +17,6 @@ export class AuthResolver {
     @Arg("nickname") nickname: string,
     @Arg("password") password: string
   ): Promise<IAuthCredentials> {
-    console.log('logging with');
-    console.log(nickname, password);
     const user = await UserService.getUserByNickname(nickname);
     if (!user) {
       throw new Error('User not found.');
@@ -28,9 +27,13 @@ export class AuthResolver {
       throw new Error('Password is incorrect');
     }
     // TODO generate token
-    console.log('returning token');
+    const { JWT_SECRET } = process.env;
+    const token = jwt.sign({
+      id: user.id,
+      nickname: user.nickname,
+    }, JWT_SECRET);
     const response: IAuthCredentials = {
-      token: 'exampletoken',
+      token,
       user,
     };
     return response;

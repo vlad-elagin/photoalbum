@@ -2,7 +2,7 @@ import { getNotificationsContext } from "svelte-notifications";
 
 const notify = (type, message) => {
   if (type !== 'success' && type !== 'danger') {
-    return;
+    throw new Error('Wrong notification type');
   }
 
   const { addNotification } = getNotificationsContext();

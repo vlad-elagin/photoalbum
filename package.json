@@ -50,6 +50,7 @@
     "@types/express-jwt": "^0.0.42",
     "@types/graphql": "^14.5.0",
     "@types/jest": "^24.0.21",
+    "@types/jsonwebtoken": "^8.3.5",
     "babel-jest": "^24.9.0",
     "expect-puppeteer": "^4.3.0",
     "jest": "^24.9.0",

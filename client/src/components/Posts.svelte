@@ -2,14 +2,21 @@
   import PostsService from '../services/posts';
   import Post from './Post.svelte';
   import PostDetails from './PostDetails.svelte';
+  import notify from "../utils/notification";
 
   let posts = null;
   PostsService
     .getPhotos()
-    .then(res => {
-      posts = res.data.posts;
+    .then(resPosts => {
+      posts = resPosts;
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+      console.log('nu che tam');
+      notify(
+        "danger",
+        err.message
+      );
+    });
   
   let activePost = null;
   const onPostClick = (post) => {
