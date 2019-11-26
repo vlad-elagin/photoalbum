@@ -4,19 +4,18 @@ import {
   Model,
   DataType,
   CreatedAt,
-  // BelongsTo
+  BelongsTo,
+  ForeignKey
 } from "sequelize-typescript";
 
 import User from '@models/user';
 
-// post can be liked by
-
 export interface IPost {
-  id?: string;
-  photoSrc: string[];
+  id: string;
+  photoSrc: string;
+  description: string;
   author: User;
-  likedBy: User[];
-  createdAt?: Date;
+  createdAt: Date;
 }
 
 @Table({
@@ -45,9 +44,12 @@ export default class Post extends Model<Post> {
   })
   public description: string;
 
-  // @BelongsTo(() => User, 'author')
-  // public author: User;
-
   @CreatedAt
   public createdAt: Date;
+
+  @ForeignKey(() => User)
+  public authorId: string;
+
+  @BelongsTo(() => User)
+  public author: User;
 }

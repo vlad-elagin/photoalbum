@@ -17,7 +17,6 @@ export interface IUser {
   name: string;
   about: string;
   posts: Post[];
-  likes: Post[];
   createdAt: Date;
   updatedAt: Date;
   checkPassword(password: string): Promise<boolean>;
@@ -60,16 +59,8 @@ export default class User extends Model<User> {
   })
   public about: string;
 
-  @HasMany(() => Post, {
-    foreignKey: 'author',
-    as: 'posts'
-  })
+  @HasMany(() => Post)
   public posts: Post[];
-
-  @HasMany(() => Post, {
-    foreignKey: 'likedBy',
-  })
-  public likes: Post[];
 
   @CreatedAt
   public createdAt: Date;

@@ -3,8 +3,7 @@ import gql from 'graphql-tag';
 import apolloClient from '../utils/apolloClient';
 
 class PostsService {
-  async getPhotos() {
-
+  async getPosts() {
     const { data, errors } = await apolloClient.query({
       query: gql`
         query {
@@ -13,7 +12,9 @@ class PostsService {
             photoSrc,
             createdAt,
             description,
-            author
+            author {
+              nickname
+            }
           }
         }
       `,
@@ -23,7 +24,24 @@ class PostsService {
       return Promise.reject(errors[0].message);
     }
 
-    return Promise.resolve(data.posts)
+    return Promise.resolve(data.posts);
+  }
+
+  async removePost(postId) {
+    const { data, errors } = await apolloClient.mutate({
+      variables: { postId },
+      mutation: gql`
+        mutation($postId: String!) {
+          removePost(postId: $postId) {
+            description
+          }
+        }
+      `,
+    });
+
+    console.log(data);
+    console.log(errors);
+    // TODO close modal and reload posts
   }
 }
 

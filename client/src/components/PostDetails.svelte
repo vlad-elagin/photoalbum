@@ -1,11 +1,22 @@
 <script>
   import { fade } from 'svelte/transition';
   import tinytime from 'tinytime';
+  import PostsService from '../services/posts';
 
   export let post;
   export let close;
 
   const template = tinytime('Taken at {H}:{mm}, {DD} {MM}');
+  const onRemove = () => {
+    PostsService
+      .removePost(post.id)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 </script>
 
 <style type="text/scss">
@@ -55,7 +66,7 @@
       <div class="modal-footer d-flex align-items-start justify-content-between">
         <p>{post.description}</p>
         <span>{template.render(new Date(post.createdAt))}</span>
-        <button class="btn btn-danger">Remove</button>
+        <button class="btn btn-danger" on:click={onRemove}>Remove</button>
       </div>
     </div>
   </div>

@@ -6,7 +6,7 @@
 
   let posts = null;
   PostsService
-    .getPhotos()
+    .getPosts()
     .then(resPosts => {
       posts = resPosts;
     })

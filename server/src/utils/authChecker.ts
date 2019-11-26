@@ -10,8 +10,9 @@ export interface IContext {
  * Check that request was signed with user's token
  */
 export const authChecker: AuthChecker<IContext> = async (
-  { context },
+  { context, args },
 ) => {
+  console.log(args);
   if (context.user) {
     return true;
   }

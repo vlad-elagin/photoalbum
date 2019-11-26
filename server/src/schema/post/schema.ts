@@ -1,5 +1,7 @@
 import { ObjectType, Field, ID } from "type-graphql";
 
+import { User } from "@schema/user/schema";
+
 @ObjectType('post')
 export class Post {
   @Field(type => ID)
@@ -9,7 +11,7 @@ export class Post {
   public photoSrc: string;
 
   @Field()
-  public author: string;
+  public author: User;
 
   @Field()
   public description: string;

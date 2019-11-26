@@ -26,8 +26,7 @@ module.exports = {
       {
         id: uuid(),
         photoSrc: `data:image/jpg;base64,${photo1.toString('base64')}`,
-        author: users['john-doe'],
-        likedBy: null,
+        authorId: users['john-doe'],
         description: 'Oh my...',
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -35,8 +34,7 @@ module.exports = {
       {
         id: uuid(),
         photoSrc: `data:image/jpg;base64,${photo2.toString('base64')}`,
-        author: users['john-doe'],
-        likedBy: null,
+        authorId: users['john-doe'],
         description: 'Soft kitty warm kitty little ball of fur',
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -44,8 +42,7 @@ module.exports = {
       {
         id: uuid(),
         photoSrc: `data:image/jpg;base64,${photo3.toString('base64')}`,
-        author: users['john-doe'],
-        likedBy: null,
+        authorId: users['john-doe'],
         description: 'Сегодня родина наша - а завтра вселенная вся',
         createdAt: new Date(),
         updatedAt: new Date(),
