@@ -4,7 +4,7 @@ import {
   Model,
   DataType,
   CreatedAt,
-  BelongsTo
+  // BelongsTo
 } from "sequelize-typescript";
 
 import User from '@models/user';

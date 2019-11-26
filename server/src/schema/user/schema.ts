@@ -1,13 +1,14 @@
 import { ObjectType, Field, ID } from "type-graphql";
 
-@ObjectType()
-class User {
+@ObjectType('user')
+export class User {
   @Field(type => ID)
   public id: string;
 
   @Field()
   public nickname: string;
 
+  // TODO we can probably remove @Field to hide password from client
   @Field({ nullable: true })
   public password: string;
 
@@ -21,4 +22,4 @@ class User {
   public createdAt: Date;
 }
 
-export default User;
+

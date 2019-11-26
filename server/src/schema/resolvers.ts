@@ -1,7 +1,6 @@
-import UserResolvers from "@schema/user/resolvers";
-import PostResolvers from "@schema/post/resolvers";
-import AuthResolvers from "@schema/auth/resolvers";
+import { UserResolver } from "@schema/user/resolvers";
+import { PostResolver } from "@schema/post/resolvers";
+import { AuthResolver } from "@schema/auth/resolvers";
 
-const resolvers = [UserResolvers, PostResolvers, AuthResolvers];
+export const resolvers = [UserResolver, PostResolver, AuthResolver];
 
-export default resolvers;

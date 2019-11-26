@@ -5,15 +5,13 @@
   "license": "MIT",
   "scripts": {
     "container:deploy": "bash ./scripts/deploy.sh",
+    "container:start": "docker run -it -p 3000:3000 -v $(pwd):/app photoalbum",
     "server:build": "yarn webpack -r dotenv/config --config ./webpack.config.js",
-    "server:build:dev": "yarn webpack -r dotenv/config --config ./webpack.config.js",
     "server:start": "node -r dotenv/config ./build/index.js",
     "server:start:dev": "yarn nodemon -r dotenv/config -L ./build/index.js",
-    "server:start:test": "NODE_ENV=test yarn server:start",
-    "start": "yarn run server:build & yarn run server:start",
-    "start:dev": "NODE_ENV=development yarn run server:build:dev & yarn run server:start:dev & yarn client:start:dev",
+    "start": "NODE_ENV=production yarn run server:build; yarn run server:start",
+    "start:dev": "NODE_ENV=development yarn run server:build & yarn run server:start:dev & yarn client:start:dev",
     "client:start:dev": "NODE_ENV=development rollup -c ./client/rollup.config.js -w",
-    "test": "yarn run jest --setupFiles dotenv/config --config=./tests/jest.config.js --detectOpenHandles",
     "seed": "yarn sequelize db:seed:all"
   },
   "dependencies": {

@@ -1,14 +1,14 @@
 import { Resolver, Query } from "type-graphql";
 
-import Post from "@schema/post/schema";
+import { Post } from "@schema/post/schema";
 import PostService from "@services/post";
 
-@Resolver(Post)
-class PostResolver {
+console.log('exporting post resolver');
+
+@Resolver()
+export class PostResolver {
   @Query(returns => [Post])
   public posts() {
     return PostService.getPosts();
   }
 }
-
-export default PostResolver;

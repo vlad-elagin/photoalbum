@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "forceConsistentCasingInFileNames": true,
     "strictPropertyInitialization": false,
     "esModuleInterop": true,
     "emitDecoratorMetadata": true,
@@ -10,17 +11,29 @@
     "noImplicitAny": true,
     "removeComments": true,
     "strict": true,
-    "types": ["node"],
     "target": "es6",
-    "lib": ["es2016", "esnext.asynciterable"],
+    "lib": [
+      "es2016",
+      "esnext.asynciterable"
+    ],
     "sourceMap": true,
     "baseUrl": "./",
     "paths": {
-      "@server/*": ["server/src/*"],
-      "@models/*": ["server/src/models/*"],
-      "@schema/*": ["server/src/schema/*"],
-      "@services/*": ["server/src/services/*"],
-      "@utils/*": ["server/src/utils/*"]
+      "@server/*": [
+        "server/src/*"
+      ],
+      "@models/*": [
+        "server/src/models/*"
+      ],
+      "@schema/*": [
+        "server/src/schema/*"
+      ],
+      "@services/*": [
+        "server/src/services/*"
+      ],
+      "@utils/*": [
+        "server/src/utils/*"
+      ]
     }
   }
 }

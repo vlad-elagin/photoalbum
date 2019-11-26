@@ -7,7 +7,7 @@ import { GraphQLSchema } from "graphql";
 import { buildSchema } from "type-graphql";
 import { ApolloServer } from "apollo-server-express";
 
-import resolvers from "@schema/resolvers";
+import { resolvers } from "@schema/resolvers";
 import { authChecker } from "@server/utils";
 
 const { APOLLO_ENGINE_PATH } = process.env;

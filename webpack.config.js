@@ -12,9 +12,6 @@ module.exports = {
     path: path.resolve(__dirname, "./build"),
     filename: "index.js",
   },
-  resolve: {
-    extensions: [".ts", ".js"],
-  },
   module: {
     rules: [
       {

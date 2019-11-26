@@ -1,7 +1,7 @@
 import { Resolver, Arg, Mutation } from "type-graphql";
 
-import User from "@schema/user/schema";
-import Auth from '@schema/auth/schema';
+import { User } from "@schema/user/schema";
+import { Auth } from '@schema/auth/schema';
 import UserService from "@services/user";
 
 export interface IAuthCredentials {
@@ -9,8 +9,8 @@ export interface IAuthCredentials {
   user: User;
 }
 
-@Resolver(Auth)
-class AuthResolver {
+@Resolver()
+export class AuthResolver {
   @Mutation(returns => Auth)
   public async login(
     @Arg("nickname") nickname: string,
@@ -25,7 +25,7 @@ class AuthResolver {
     if (!passwordCorrect) {
       throw new Error('Password is incorrect');
     }
-    // check password, generate token
+    // TODO generate token
     return {
       token: 'example token',
       user,
@@ -46,5 +46,3 @@ class AuthResolver {
     return user;
   }
 }
-
-export default AuthResolver;

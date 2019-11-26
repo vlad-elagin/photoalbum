@@ -1,7 +1,7 @@
 import { ObjectType, Field, ID } from "type-graphql";
 
-@ObjectType()
-class Post {
+@ObjectType('post')
+export class Post {
   @Field(type => ID)
   public id: string;
 
@@ -20,5 +20,3 @@ class Post {
   @Field()
   public createdAt: Date;
 }
-
-export default Post;

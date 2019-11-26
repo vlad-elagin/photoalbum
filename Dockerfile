@@ -1,15 +1,9 @@
-FROM node:10-alpine
+FROM node:10-slim
+WORKDIR /usr/src/app
 
-# Create app directory
-WORKDIR /usr/src/photoalbum
-
-# Install app dependencies
-COPY package.json /usr/src/photoalbum
+COPY package.json .
 RUN yarn
 
-# Bundle app source
 COPY . .
 
-# # Make port accessible from outside of container
-EXPOSE 3001
-CMD [ "yarn", "run", "start:dev" ]
+CMD ["yarn", "start"]
