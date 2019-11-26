@@ -9,7 +9,8 @@
     "server:build": "yarn webpack -r dotenv/config --config ./webpack.config.js",
     "server:start": "node -r dotenv/config ./build/index.js",
     "server:start:dev": "yarn nodemon -r dotenv/config -L ./build/index.js",
-    "start": "NODE_ENV=production yarn run server:build; yarn run server:start",
+    "start1": "NODE_ENV=production yarn run server:build; yarn run server:start",
+    "start": "bash ./scripts/start.sh",
     "start:dev": "NODE_ENV=development yarn run server:build & yarn run server:start:dev & yarn client:start:dev",
     "client:start:dev": "NODE_ENV=development rollup -c ./client/rollup.config.js -w",
     "seed": "yarn sequelize db:seed:all"
