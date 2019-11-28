@@ -37,7 +37,7 @@
     "svelte": "^3.12.1",
     "svelte-notifications": "^0.9.8",
     "svelte-preprocess": "^3.1.2",
-    "svero": "^1.0.0",
+    "svelte-routing": "^1.4.0",
     "tinytime": "^0.2.6",
     "type-graphql": "^0.17.5",
     "uuid": "^3.3.3"

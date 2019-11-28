@@ -1,5 +1,5 @@
 <script>
-  import { navigateTo } from "svero";
+  import { navigate } from "svelte-routing";
   import AuthService from "../services/auth";
   import notify from "../utils/notification";
 
@@ -31,7 +31,7 @@
           nickname,
           password
         });
-        navigateTo("/photos");
+        navigate("/photos");
       }
     } catch (err) {
       if (err.graphQLErrors) {

@@ -1,5 +1,5 @@
 <script>
-  import { Router, Route, navigateTo } from "svero";
+  import { Router, Route, navigate } from "svelte-routing";
   import Notifications from "svelte-notifications";
 
   import Notification from "./components/Notification.svelte";
@@ -12,9 +12,9 @@
   const credentials = AuthService.getCredentials();
 
   if (credentials === null) {
-    navigateTo("/login");
+    navigate("/login", { replace: true });
   } else {
-    navigateTo("/photos");
+    navigate("/photos", { replace: true });
   }
 </script>
 
@@ -44,10 +44,10 @@
 <Notifications item={Notification}>
   <main class="d-flex flex-column">
     <Header />
-    <div class="d-flex align-items-center justify-content-center flex-grow-1">
-      <Router path="/">
-        <Route path="/login" component={Login} />
-        <Route path="/photos" component={Posts} />
+    <div class="d-flex align-items-stretch justify-content-center flex-grow-1">
+      <Router>
+        <Route path="/login"><Login /></Route>
+        <Route path="/photos"><Posts /></Route>
       </Router>
     </div>
   </main>

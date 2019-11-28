@@ -1,4 +1,5 @@
 <script>
+  import { link } from 'svelte-routing';
   import AuthService from '../services/auth';
 
   let isLogged = null;
@@ -25,8 +26,13 @@
       href="/login"
       on:click={logOut}
       class="btn btn-outline-light"
+      use:link
     >Log Out</a>
   {:else}
-    <a href="/login" class="btn btn-outline-light">Log In</a>
+    <a
+      href="/login"
+      class="btn btn-outline-light"
+      use:link
+    >Log In</a>
   {/if}
 </header>
