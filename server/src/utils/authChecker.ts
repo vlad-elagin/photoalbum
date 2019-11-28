@@ -12,7 +12,6 @@ export interface IContext {
 export const authChecker: AuthChecker<IContext> = async (
   { context, args },
 ) => {
-  console.log(args);
   if (context.user) {
     return true;
   }

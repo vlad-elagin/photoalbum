@@ -38,12 +38,12 @@ class PostsService {
       const { data, errors } = await apolloClient.mutate({
         variables: { postId },
         mutation: gql`
-        mutation($postId: String!) {
-          removePost(postId: $postId) {
-            description
+          mutation($postId: String!) {
+            removePost(postId: $postId) {
+              description
+            }
           }
-        }
-      `,
+        `,
       });
 
       if (!data && errors) {
@@ -52,6 +52,30 @@ class PostsService {
 
       await this.getPosts();
       return Promise.resolve(data.removePost);
+    } catch (err) {
+      return Promise.reject(err);
+    }
+  }
+
+  async createPost(imageSrc, description) {
+    try {
+      const { data, errors } = await apolloClient.mutate({
+        variables: { description, imageSrc },
+        mutation: gql`
+          mutation($description: String, $imageSrc: String!) {
+            createPost(description: $description, imageSrc: $imageSrc) {
+              description
+            }
+          }
+        `,
+      });
+
+      if (errors) {
+        throw errors[0].message;
+      }
+
+      await this.getPosts();
+      return Promise.resolve(data.createPost.description);
     } catch (err) {
       return Promise.reject(err);
     }

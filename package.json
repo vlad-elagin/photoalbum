@@ -4,11 +4,10 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "container:deploy": "bash ./scripts/deploy.sh",
+    "deploy": "bash ./scripts/deploy.sh",
     "start": "bash ./scripts/start.sh",
     "start:dev": "bash ./scripts/dev.sh",
-    "seed": "yarn sequelize db:seed:all",
-    "test": "yarn cypress open"
+    "seed": "yarn sequelize db:seed:all"
   },
   "dependencies": {
     "@overnightjs/core": "^1.6.9",

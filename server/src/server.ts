@@ -53,7 +53,7 @@ export default class PhotoalbumServer extends Server {
   }
 
   private initExpressApp(): void {
-    this.app.use(bodyParser.json());
+    this.app.use(bodyParser.json({ limit: '2mb' }));
     this.app.use(bodyParser.urlencoded({ extended: true }));
 
     const { JWT_SECRET } = process.env;

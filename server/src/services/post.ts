@@ -30,6 +30,13 @@ class PostService {
     await post.destroy();
     return Promise.resolve(removedPost);
   }
+
+  public createPost(postData: IPost): Promise<IPost> {
+    return Post.create({
+      ...postData,
+      createdAt: new Date(),
+    });
+  }
 }
 
 export default new PostService();

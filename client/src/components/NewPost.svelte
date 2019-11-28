@@ -29,11 +29,22 @@
   }
 
   const onSave = () => {
-    console.log('saving');
     if (!imageSrc) {
       notify('danger', 'Select a photo to upload.');
       return;
     }
+
+    PostsService
+      .createPost(imageSrc, description)
+      .then(post => {
+        notify('success', `Created post ${post.slice(0, 15).concat('...')}`);
+      })
+      .catch(err => {
+        notify('danger', err.message);
+      })
+      .finally(() => {
+        close();
+      })
   }
 </script>
 
