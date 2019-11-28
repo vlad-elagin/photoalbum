@@ -24,9 +24,19 @@
     height: 100%;
   }
 
+  :global(.modal) {
+    display: block;
+    background-color: rgba(0,0,0, .8);
+  }
+
+  :global(.notifications) {
+    z-index: 9999;
+    position: fixed;
+  }
+
   main {
     width: 100%;
-    height: 100%;
+    min-height: 100%;
     background-color: darken(#fff, 5%);
   }
 </style>

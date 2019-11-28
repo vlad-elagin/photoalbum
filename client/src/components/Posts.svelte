@@ -2,6 +2,7 @@
   import PostsService from '../services/posts';
   import Post from './Post.svelte';
   import PostDetails from './PostDetails.svelte';
+  import NewPost from './NewPost.svelte';
   import notify from "../utils/notification";
 
   let posts = null;
@@ -25,6 +26,11 @@
   }
   const closeDetails = () => {
     activePost = null;
+  }
+
+  let newPost = false;
+  const toggleNewPost = () => {
+    newPost = !newPost;
   }
 </script>
 
@@ -61,7 +67,7 @@
       {:else}
         <span class="amount">You have {posts.length} photos.</span>
       {/if}
-      <button class="btn btn-primary">Add new photo</button>
+      <button class="btn btn-primary" on:click={toggleNewPost}>Add new photo</button>
     </div>
 
     <div class="photos-page-wrapper container">
@@ -77,5 +83,9 @@
 
   {#if activePost !== null}
     <PostDetails post={activePost} close={closeDetails} />
+  {/if}
+
+  {#if newPost}
+    <NewPost close={toggleNewPost} />
   {/if}
 </div>

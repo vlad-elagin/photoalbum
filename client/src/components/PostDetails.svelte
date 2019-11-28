@@ -24,11 +24,6 @@
 </script>
 
 <style type="text/scss">
-  .modal {
-    display: block;
-    background-color: rgba(0,0,0, .8);
-  }
-
   .modal-body img {
     width: 100%;
     max-height: 70vh;
