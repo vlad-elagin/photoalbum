@@ -26,7 +26,6 @@ export class AuthResolver {
     if (!passwordCorrect) {
       throw new Error('Password is incorrect');
     }
-    // TODO generate token
     const { JWT_SECRET } = process.env;
     const token = jwt.sign({
       id: user.id,

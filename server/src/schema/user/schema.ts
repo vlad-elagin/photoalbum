@@ -9,7 +9,7 @@ export class User {
   public nickname: string;
 
   // TODO we can probably remove @Field to hide password from client
-  @Field({ nullable: true })
+  // @Field({ nullable: true })
   public password: string;
 
   @Field({ nullable: true })

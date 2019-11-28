@@ -5,18 +5,19 @@
   import notify from "../utils/notification";
 
   let posts = null;
+  PostsService.store.subscribe((_posts) => {
+    posts = _posts;
+  });
+
   PostsService
     .getPosts()
-    .then(resPosts => {
-      posts = resPosts;
-    })
     .catch(err => {
-      console.log('nu che tam');
       notify(
         "danger",
         err.message
       );
     });
+  
   
   let activePost = null;
   const onPostClick = (post) => {

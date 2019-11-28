@@ -1,8 +1,13 @@
 import gql from 'graphql-tag';
+import { writable } from 'svelte/store';
 
 import apolloClient from '../utils/apolloClient';
 
 class PostsService {
+  constructor() {
+    this.store = writable(null);
+  }
+
   async getPosts() {
     const { data, errors } = await apolloClient.query({
       query: gql`
@@ -24,24 +29,32 @@ class PostsService {
       return Promise.reject(errors[0].message);
     }
 
-    return Promise.resolve(data.posts);
+    this.store.set(data.posts);
+    return Promise.resolve();
   }
 
   async removePost(postId) {
-    const { data, errors } = await apolloClient.mutate({
-      variables: { postId },
-      mutation: gql`
+    try {
+      const { data, errors } = await apolloClient.mutate({
+        variables: { postId },
+        mutation: gql`
         mutation($postId: String!) {
           removePost(postId: $postId) {
             description
           }
         }
       `,
-    });
+      });
 
-    console.log(data);
-    console.log(errors);
-    // TODO close modal and reload posts
+      if (!data && errors) {
+        throw errors[0].message;
+      }
+
+      await this.getPosts();
+      return Promise.resolve(data.removePost);
+    } catch (err) {
+      return Promise.reject(err);
+    }
   }
 }
 

@@ -22,7 +22,6 @@ class PostService {
         as: 'author'
       }]
     });
-    console.log('post', post);
     if (!post) {
       throw new Error('Cant find a post with specified ID');
     }

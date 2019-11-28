@@ -45,7 +45,6 @@ class AuthService {
       });
       return Promise.resolve(data.register.nickname);
     } catch (err) {
-      console.dir(err);
       throw err;
     }
   }

@@ -2,6 +2,7 @@
   import { fade } from 'svelte/transition';
   import tinytime from 'tinytime';
   import PostsService from '../services/posts';
+  import notify from '../utils/notification';
 
   export let post;
   export let close;
@@ -11,10 +12,13 @@
     PostsService
       .removePost(post.id)
       .then((res) => {
-        console.log(res);
+        notify('success', `Post "${res.description.slice(0, 15).concat('...')}" was successfully deleted.`);
       })
       .catch((err) => {
-        console.log(err);
+        notify('danger', err.message);
+      })
+      .finally(() => {
+        close();
       });
   };
 </script>

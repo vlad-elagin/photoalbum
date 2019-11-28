@@ -16,9 +16,6 @@ export class Post {
   @Field()
   public description: string;
 
-  // @Field({ nullable: true })
-  // public likedBy?: string[];
-
   @Field()
   public createdAt: Date;
 }

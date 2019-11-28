@@ -14,10 +14,9 @@ export class PostResolver {
 
   @Authorized([ROLE_SELF])
   @Mutation(returns => Post)
-  public async removePost(
+  public removePost(
     @Arg('postId') postId: string
   ): Promise<Post> {
-    console.log('removing post with id', postId);
     return PostService.removePost(postId);
   }
 }
